@@ -8,6 +8,7 @@
 ### A highly customizable and easy-to-use Homes plugin which supports both commands and forms for your Minecraft Bedrock Server running on PocketMine-MP. 
 
 ### Features
+
 - Allows you to **create homes** on your server.
 - Easy configuration and setup.
 - You can change the language by editing the `lang.yml` file.
@@ -20,13 +21,17 @@
 - **Admins** can easily **monitor player homes** even when a player is **offline**.
 
 ### How to setup?
+
 - Get the [.phar](https://poggit.pmmp.io/ci/AntiCores/EasyHomes/EasyHomes) of this plugin from [poggit](https://poggit.pmmp.io/ci/AntiCores/EasyHomes/EasyHomes)
 - Put into your plugins folder.
 - Restart the server.
 - Enjoy...
+
 ### Commands and Permissions
+
 - Normal Player Commands:
-| Description | Command | Permission| Default |
+
+|Description|Command|Permission|Default|
 |:--:|:--:|:--:|:--:|
 |Home form|`/home`|`eh.command`|`true`|
 |Home command|`/home [string:home]`|`eh.command.tp`|`true`|
@@ -35,12 +40,10 @@
 |Help command|`/home help`|`eh.command.help`|`true`|
 |List homes|`/home list`|`eh.command.list`|`true`|
 |Set a home|`/home set [string:home]`|`eh.command.set`|`true`|
-<br />
-**_Note: Alias for every command exists. You can find detail in `lang.yml`._** 
-<br />
-<br />
+
 - Admin Player Commands:
-| Description | Command | Permission| Default |
+
+|Description|Command|Permission|Default|
 |:--:|:--:|:--:|:--:|
 |Admin form|`/homeadmin`|`eh.command.admin`|`op`|
 |Delete a player home|`/homeadmin delete [string:player] [string:home]`|`eh.command.admin.del`|`op`|
@@ -50,19 +53,20 @@
 |List player's homes|`/homeadmin list [string:player]`|`eh.command.admin.list`|`op`|
 |Set player's home|`/homeadmin set [string:player] [string:home]`|`eh.command.admin.set`|`op`|
 |Teleport to player's home|`/homeadmin teleport [string:player] [string:home]`|`eh.command.admin.tp`|`op`|
-<br />
+
 **_Note: Alias for every command exists. You can find detail in `lang.yml`._** 
-<br />
+
 ### API
-EasyHomes provides a simple API for developers wishing to use this plugin in theirs or make addons for it.
-- First you need to get hold of the plugin. You can do so by:
+
+EasyHomes provides a simple API for developers wishing to use this plugin in theirs or make addons for it.<br />
+- First you need to get hold of the plugin. You can do so by:<br />
 ```php
 $easyHomes = Server::getInstance()->getPluginManager()->getPlugin("EasyHomes");
 if($easyHomes instancof \JackMD\EasyHomes\Main){
     //do whatever
 }
 ```
-- Then you need to get hold of the provider via:
+- Then you need to get hold of the provider via:<br />
 ```php
 $provider = $easyhomes->getProvider();
 ```
