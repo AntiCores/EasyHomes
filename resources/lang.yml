@@ -1,0 +1,340 @@
+---
+#  ___              _  _
+# | __|__ _ ____  _| || |___ _ __  ___ ___
+# | _|/ _` (_-< || | __ / _ \ '  \/ -_|_-<
+# |___\__,_/__/\_, |_||_\___/_|_|_\___/__/
+#              |__/
+#
+# EasyHomes, a Homes plugin for PocketMine-MP.
+# Copyright (c) 2018 JackMD  < https://github.com/JackMD >
+#
+# Discord: JackMD#3717
+# Twitter: JackMTaylor_
+#
+# This software is distributed under "GNU General Public License v3.0".
+# This license allows you to use it and/or modify it but you are not at
+# all allowed to sell this plugin at any cost. If found doing so the
+# necessary action required would be taken.
+#
+# EasyHomes is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License v3.0 for more details.
+#
+# You should have received a copy of the GNU General Public License v3.0
+# along with this program. If not, see
+# <https://opensource.org/licenses/GPL-3.0>.
+# ------------------------------------------------------------------------
+#
+# EasyHomes Language Configuration File.
+#
+# Use "§" for adding colors.
+
+# DO NOT EDIT THIS VALUE.
+# ONLY FOR INTERNAL USE.
+lang-version: "SelenaGomez"
+
+command:
+
+  in_game: "This command can only be used in-game."
+  player_not_found: "Player with the name {player} doesn't exist."
+  not_found: "Unknown command. Use /help for a list of commands."
+
+  main:
+    default:
+      name: "home"
+      usage: "/home help"
+      desc: "Allows using home commands. (Alias: 'h')."
+      alias: ["h"]
+
+    admin:
+      name: "homeadmin"
+      usage: "/ha help"
+      desc: "Allows using admin home commands. (Alias: 'ha')."
+      alias: ["ha"]
+      admin_only: "Only Admins are allowed to use this command."
+
+  normal:
+
+    default:
+      name: "default"
+      usage: "/home [string:home]"
+      desc: "Teleport to your home"
+
+    delete:
+      name: "delete"
+      usage: "/home delete [string:name]"
+      desc: "Delete your home. (Alias: 'rm', 'del')."
+      aliases: ["rm", "del"]
+      no_home: "Home with the name {home_name} doesn't exist. Use /home list to get a list of available homes."
+      success: "Home with the name {home_name} successfully removed."
+
+    help:
+      name: "help"
+      usage: "/home help [int:page]"
+      desc: "Get a list of home commands. (Alias: 'h', '?')."
+      aliases: ["h", "?"]
+      note: "§aNote: §7You can use commands directly if forms don't suit you."
+
+    list:
+      name: "list"
+      usage: "/home list"
+      desc: "Get a list of your current homes. (Alias: 'l')."
+      aliases: ["l"]
+      no_home: "You don't have any home yet"
+      success: "Available homes ({count}):"
+
+    set:
+      name: "set"
+      usage: "/home set [string:name]"
+      desc: "Set or update your home. (Alias: 's', 'create', 'c')."
+      aliases: ["s", "create", "c"]
+      invalid_home: "Please provide a valid home name."
+      max_homes: "You can only set a maximum of {max_homes} homes."
+      condition:
+        updated: "updated"
+        created: "created"
+      success: "Home with the name {home_name} successfully {condition}."
+
+    teleport:
+      name: "teleport"
+      usage: "/home teleport [string:name]"
+      desc: "Teleport to your home. (Alias: 'tp')."
+      aliases: ["tp"]
+      max_homes: "You have {homes} homes set whereas you are only allowed to set a maximum of {max_homes} homes. Therefore your access to homes has been blocked. In order to regain home access either delete one of your home(s) or ask the owner of the server to increase your home limit."
+      home_not_exist: "Home with the name {home_name} doesn't exist. Use /home list to get a list of available homes."
+      success: "Beamed you to {home_name}..."
+
+  admin:
+
+    delete:
+      name: "delete"
+      usage: "/ha delete [string:player] [string:home]"
+      desc: "Delete a players home. (Alias: 'del', 'rm')."
+      aliases: ["del", "rm"]
+      home_not_exist: "Home with the name {home_name} doesn't exist. Use /ha list [string:player] to get a list of homes of player."
+      success: "{player}'s home with the name {home_name} successfully removed."
+
+    help:
+      name: "help"
+      usage: "/ha help [int:page]"
+      desc: "Get a list of admin home commands. (Alias: 'h', '?')."
+      aliases: ["h", "?"]
+      note: "§aNote: §7You can use commands directly if forms don't suit you."
+
+    limit:
+      set:
+        name: "setlimit"
+        usage: "/ha setlimit [string:player] [int:count]"
+        desc: "Set a limit to the maximum homes a player can get. (Alias: 'sl')."
+        aliases: ["sl"]
+        success: "{player} home limit has successfully been updated to {home_limit}"
+
+      get:
+        name: "getlimit"
+        usage: "/ha getlimit [string:player]"
+        desc: "Get the home limit of a player. (Alias: 'gl')."
+        aliases: ["gl"]
+        success: "{player}'s home limit is {home_limit}"
+
+    list:
+      name: "list"
+      usage: "/ha list [string:player]"
+      desc: "Get a list of current homes of a player. (Alias: 'l')."
+      aliases: ["l"]
+      no_home: "Player: {player} does not have a home yet."
+      success: "Available homes of player {player} ({count}):"
+
+    set:
+      name: "set"
+      usage: "/ha set [string:player] [string:name]"
+      desc: "Sets or update players home. (Alias: 's', 'create', 'c')."
+      aliases: ["s", "create", "c"]
+      invalid_home: "Please provide a valid home name."
+      max_homes: "Player already has maximum number of homes set."
+      condition:
+        updated: "updated"
+        created: "created"
+      success: "Home with the name {home_name} successfully {condition}."
+
+    teleport:
+      name: "teleport"
+      usage: "/ha teleport [string:player] [string:home]"
+      desc: "Teleport to a players home. (Alias: 'tp')."
+      aliases: ["tp"]
+      home_not_exist: "Home with the name {home_name} doesn't exist. Use /ha list [string:player] to get a list of homes of player."
+      success: "Beamed you to {home_name}..."
+
+form:
+
+  error_title: "Oops an error occurred..."
+
+  error:
+    empty_player:
+      content: "Please enter a valid player name."
+      button: "Exit"
+
+    player_not_found:
+      content: "Player with the name {player} doesn't exist"
+      button: "Exit"
+
+  normal:
+
+    title: "EasyHomes UI"
+
+    main:
+      content: "Select your required option."
+      create: "Create\nCreate or update your home"
+      teleport: "Teleport\nSelect a home to teleport to"
+      delete: "Delete\nDelete your home"
+
+    create:
+      text: "Create or update a home:\n"
+      placeholder: "Enter a name for home"
+
+      condition:
+        updated: "updated"
+        created: "created"
+
+      success:
+        content: "Home with the name {home_name} successfully {condition}."
+        button: "Exit"
+
+      error:
+        empty_home:
+          content: "Please enter a valid home name."
+          yes_button: "Try Again?"
+          no_button: "Exit?"
+
+        max_homes:
+          content: "You can only set a maximum of {max_homes} homes."
+          button: "Exit"
+
+    teleport:
+      label: "Choose a home from the dropdown to which you want to teleport to."
+      dropdown: "Select your desired home:"
+
+      success:
+        content: "Beamed you to {home_name}..."
+        button: "Exit"
+
+      error:
+        max_homes:
+          content: "You have {homes} homes set whereas you are only allowed to set a maximum of {max_homes} homes. Therefore your access to homes has been blocked. In order to regain home access either delete one of your home(s) or ask the owner of the server to increase your home limit."
+          button: "Exit"
+        no_homes:
+          content: "You don't have any homes set."
+          button: "Exit"
+
+    delete:
+      label: "Choose a home from the dropdown which you want to delete."
+      dropdown: "Select your desired home:"
+
+      success:
+        content: "Home with the name {home_name} successfully deleted."
+        button: "Exit"
+
+  admin:
+
+    title: "EasyHomes Admin UI"
+
+    user:
+      toggle: "Enable to use player name instead of dropdown."
+      dropdown: "Choose a player from the dropdown:"
+
+      input:
+        player:
+          text: "Enter name of the player:"
+          placeholder: "Player's name here"
+
+      error:
+        no_homes:
+          content: "Player has no homes."
+          button: "Exit"
+
+    main:
+      content: "Select your required option."
+      create: "Create\nSet or update players home"
+      teleport: "Teleport\nTeleport to players home"
+      delete: "Delete\nDelete players home"
+      get_limit: "Get Limit\nGet players home limit"
+      set_limit: "Set Limit\nSet or update players home limit"
+
+    create:
+      label: "Create or update a players home"
+
+      input:
+
+        home:
+          text: "Create or update players home:"
+          placeholder: "Enter a name for home"
+
+      condition:
+        updated: "updated"
+        created: "created"
+
+      success:
+        content: "Home with the name {home_name} successfully {condition}."
+        button: "Exit"
+
+      error:
+        empty_home:
+          content: "Please enter a valid home name."
+          yes_button: "Try Again?"
+          no_button: "Exit?"
+
+        max_homes:
+          content: "Player already has maximum number of homes set i.e. {max_homes}."
+          button: "Exit"
+
+    teleport:
+      label: "Teleport to a players home"
+
+      select:
+        label: "Select the home to which you want to teleport to from the dropdown below."
+        dropdown: "Select a home:"
+
+      success:
+        content: "Beamed you to {home_name}..."
+        button: "Exit"
+
+      error:
+        no_homes:
+          content: "Player has no homes set."
+          button: "Exit"
+
+    delete:
+      label: "Delete a players home."
+
+      select:
+        label: "Select the home which you wish to delete."
+        dropdown: "Select a home:"
+
+      success:
+        content: "Home with the name {home_name} successfully deleted."
+        button: "Exit"
+
+    get_limit:
+      label: "Get the home limit of a player."
+
+      success:
+        content: "Player {player}'s home limit is {home_limit}."
+        button: "Exit"
+
+    set_limit:
+      label: "Set the home limit of a player."
+
+      input:
+        text: "Enter the limit you want to set:"
+        placeholder: "Enter limit here"
+
+      success:
+        content: "Player {player}'s home limit successfully set to {home_limit}."
+        button: "Exit"
+
+      error:
+        empty_limit:
+          content: "Please enter a limit. It should be an integer."
+          yes_button: "Try Again?"
+          no_button: "Exit?"
+...
