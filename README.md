@@ -62,7 +62,7 @@ EasyHomes provides a simple API for developers wishing to use this plugin in the
 - First you need to get hold of the plugin. You can do so by:<br />
 ```php
 $easyHomes = Server::getInstance()->getPluginManager()->getPlugin("EasyHomes");
-if($easyHomes instancof \JackMD\EasyHomes\Main){
+if($easyHomes instanceof \JackMD\EasyHomes\Main){
     //do whatever
 }
 ```
@@ -70,5 +70,5 @@ if($easyHomes instancof \JackMD\EasyHomes\Main){
 ```php
 $provider = $easyhomes->getProvider();
 ```
-- Now you take a look at [ProviderInterface]() for the things you can access.
+- Now you take a look at [ProviderInterface](https://github.com/AntiCores/EasyHomes/blob/master/src/JackMD/EasyHomes/provider/ProviderInterface.php) for the things you can access.
 - Everything in it is easy and straight forward.
