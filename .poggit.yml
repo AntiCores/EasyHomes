@@ -4,4 +4,5 @@ branches:
 projects:
   EasyHomes:
     path: ""
+    icon: meta/EasyHomes.png
 ...
