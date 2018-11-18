@@ -67,7 +67,6 @@ class Main extends PluginBase{
 			$this->saveResource("config.yml");
 			$this->getLogger()->error("Your configuration file is outdated.");
 			$this->getLogger()->error("Your old configuration has been saved as config_old.yml and a new configuration file has been generated.");
-			return;
 		}
 	}
 	
