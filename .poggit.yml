@@ -5,7 +5,4 @@ projects:
   EasyHomes:
     path: ""
     icon: meta/EasyHomes.png
-    libs:
-      - src: jojoe77777/FormAPI/FormAPI_virion
-        version: ^1.3.0
 ...
