@@ -1,8 +1,9 @@
 name: EasyHomes
 main: JackMD\EasyHomes\Main
 api: [3.0.0]
-version: 1.0.0
+version: 1.0.1
 author: JackMD
+depend: ["FormAPI"]
 
 permissions:
   eh.command:
