@@ -5,4 +5,6 @@ projects:
   EasyHomes:
     path: ""
     icon: meta/EasyHomes.png
+    libs:
+      - src: "https://poggit.pmmp.io/r/45730/FormAPI_virion_dev-1.phar"
 ...
