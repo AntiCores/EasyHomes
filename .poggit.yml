@@ -6,6 +6,6 @@ projects:
     path: ""
     icon: meta/EasyHomes.png
     libs:
-      - src: JackMD/FormAPI/FormAPI_virion
+      - src: jojoe77777/FormAPI/libFormAPI
         version: ^1.3.0
 ...
