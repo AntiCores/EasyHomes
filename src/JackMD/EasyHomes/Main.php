@@ -104,8 +104,8 @@ class Main extends PluginBase{
 	}
 	
 	private function registerCommands(): void{
-		$this->getServer()->getCommandMap()->register(Lang::get("command.main.default.name"), new HomeCommand(Lang::get("command.main.default.name"), $this));
-		$this->getServer()->getCommandMap()->register(Lang::get("command.main.admin.name"), new HomeAdminCommand(Lang::get("command.main.admin.name"), $this));
+		$this->getServer()->getCommandMap()->register("easyhomes", new HomeCommand(Lang::get("command.main.default.name"), $this));
+		$this->getServer()->getCommandMap()->register("easyhomes", new HomeAdminCommand(Lang::get("command.main.admin.name"), $this));
 	}
 	
 	public function onDisable(): void{
