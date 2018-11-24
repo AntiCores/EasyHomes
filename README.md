@@ -22,7 +22,6 @@
 
 ### How to setup?
 
-- Make sure you have [FormAPI](https://poggit.pmmp.io/p/formapi) to work. Make sure you have it or else it won't function without it.
 - Get the [.phar](https://poggit.pmmp.io/ci/AntiCores/EasyHomes/EasyHomes) of this plugin from [poggit](https://poggit.pmmp.io/ci/AntiCores/EasyHomes/EasyHomes)
 - Put into your plugins folder.
 - Restart the server.
