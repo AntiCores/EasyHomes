@@ -38,6 +38,7 @@ use JackMD\EasyHomes\language\Lang;
 use JackMD\EasyHomes\provider\ProviderInterface;
 use JackMD\EasyHomes\provider\providers\SQLiteProvider;
 use JackMD\EasyHomes\provider\providers\YamlProvider;
+use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
@@ -51,6 +52,7 @@ class Main extends PluginBase{
 	private $provider;
 	
 	public function onEnable(): void{
+		$this->checkFormAPI();
 		$this->saveDefaultConfig();
 		$this->checkConfig();
 		$this->initLang();
@@ -58,6 +60,12 @@ class Main extends PluginBase{
 		$this->getProvider()->prepare();
 		$this->registerCommands();
 		$this->getLogger()->info("EasyHomes Plugin Enabled.");
+	}
+	
+	private function checkFormAPI(): void{
+		if(!class_exists(SimpleForm::class)){
+			throw new \RuntimeException("EasyHomes plugin will only work if you use the plugin phar from Poggit.");
+		}
 	}
 	
 	private function checkConfig(): void{
