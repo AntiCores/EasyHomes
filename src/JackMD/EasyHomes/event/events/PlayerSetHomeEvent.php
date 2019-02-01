@@ -82,7 +82,6 @@ class PlayerSetHomeEvent extends BaseEvent implements Cancellable{
 	 */
 	public function setPlayerName(string $playerName): void{
 		$this->playerName = $playerName;
-		$this->getPlugin();
 	}
 
 	/**
