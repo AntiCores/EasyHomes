@@ -74,11 +74,12 @@ class SetSubCommand extends SubCommand{
 	public function getAliases(): array {
 		return Lang::get("command.normal.set.aliases");
 	}
-	
+
 	/**
 	 * @param CommandSender|Player $sender
-	 * @param array         $args
+	 * @param array                $args
 	 * @return bool
+	 * @throws \ReflectionException
 	 */
 	public function execute(CommandSender $sender, array $args): bool{
 		if(!isset($args[0])){
@@ -89,7 +90,7 @@ class SetSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix . Lang::get("command.normal.set.invalid_home"));
 			return false;
 		}
-		$this->plugin->getProvider()->registerPlayer($sender->getName());
+		$this->plugin->getAPI()->registerPlayer($sender->getName());
 		if($this->plugin->getProvider()->getHomes($sender->getName()) !== null){
 			if(count($this->plugin->getProvider()->getHomes($sender->getName())) >= $this->plugin->getProvider()->getMaxHomes($sender->getName())){
 				$sender->sendMessage($this->prefix . str_replace("{max_homes}", $this->plugin->getProvider()->getMaxHomes($sender->getName()), Lang::get("command.normal.set.max_homes")));
@@ -97,7 +98,7 @@ class SetSubCommand extends SubCommand{
 			}
 		}
 		$condition = ($this->plugin->getProvider()->homeExists($sender->getName(), $args[0]) ? Lang::get("command.normal.set.condition.updated") : Lang::get("command.normal.set.condition.created"));
-		$this->plugin->getProvider()->setHome($sender->getName(), $args[0], $sender->getLocation(), $sender->getYaw(), $sender->getPitch());
+		$this->plugin->getAPI()->setHome($sender->getName(), $args[0], $sender->getLocation(), $sender->getYaw(), $sender->getPitch());
 		$sender->sendMessage($this->prefix . str_replace(["{home_name}", "{condition}"], [$args[0], $condition], Lang::get("command.normal.set.success")));
 		return true;
 	}

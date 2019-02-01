@@ -84,7 +84,7 @@ class HomeForm{
 				return;
 			}
 			$homeName = $result[0];
-			$plugin->getProvider()->registerPlayer($player->getName());
+			$plugin->getAPI()->registerPlayer($player->getName());
 			if($plugin->getProvider()->getHomes($player->getName()) !== null){
 				if(count($plugin->getProvider()->getHomes($player->getName())) >= $plugin->getProvider()->getMaxHomes($player->getName())){
 					self::errorMaxHomes($plugin, $player, Lang::get("form.normal.create.error.max_homes.content"), Lang::get("form.normal.create.error.max_homes.button"));
@@ -92,7 +92,7 @@ class HomeForm{
 				}
 			}
 			$condition = ($plugin->getProvider()->homeExists($player->getName(), $homeName) ? Lang::get("form.normal.create.condition.updated") : Lang::get("form.normal.create.condition.created"));
-			$plugin->getProvider()->setHome($player->getName(), $homeName, $player->getLocation(), $player->getYaw(), $player->getPitch());
+			$plugin->getAPI()->setHome($player->getName(), $homeName, $player->getLocation(), $player->getYaw(), $player->getPitch());
 			self::homeCreateSuccessful($player, $homeName, $condition);
 			return;
 		});
@@ -172,7 +172,7 @@ class HomeForm{
 			}
 			$home = $list[$result[1]];
 			$homeLocation = $plugin->getProvider()->getHome($player->getName(), $home);
-			$player->teleport($homeLocation);
+			$plugin->getAPI()->teleportToHome($player, $homeLocation);
 			self::homeTeleportSuccessful($player, $home);
 			return;
 		});
@@ -228,7 +228,7 @@ class HomeForm{
 				return;
 			}
 			$home = $list[$result[1]];
-			$plugin->getProvider()->deleteHome($player->getName(), $home);
+			$plugin->getAPI()->deleteHome($player->getName(), $home);
 			self::homeDeleteSuccessful($player, $home);
 			return;
 		});

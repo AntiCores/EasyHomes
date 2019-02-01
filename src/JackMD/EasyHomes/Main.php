@@ -46,12 +46,18 @@ class Main extends PluginBase{
 	
 	/** @var string */
 	private const CONFIG_VERSION = "TaylorSwift";
+
 	/** @var string */
 	public $prefix = "§a[§eEasy§6Homes§a]§r ";
+
 	/** @var ProviderInterface */
 	private $provider;
-	
+	/** @var EasyHomesAPI */
+	private $api;
+
 	public function onEnable(): void{
+		$this->api = new EasyHomesAPI($this);
+
 		$this->checkFormAPI();
 		$this->saveDefaultConfig();
 		$this->checkConfig();
@@ -59,6 +65,7 @@ class Main extends PluginBase{
 		$this->setProvider();
 		$this->getProvider()->prepare();
 		$this->registerCommands();
+
 		$this->getLogger()->info("EasyHomes Plugin Enabled.");
 	}
 	
@@ -80,6 +87,13 @@ class Main extends PluginBase{
 	
 	private function initLang(): void{
 		Lang::init($this);
+	}
+
+	/**
+	 * @return EasyHomesAPI
+	 */
+	public function getAPI(): EasyHomesAPI{
+		return $this->api;
 	}
 	
 	private function setProvider(): void{

@@ -99,8 +99,8 @@ class TeleportSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix . str_replace("{home_name}", $args[1], Lang::get("command.admin.teleport.home_not_exist")));
 			return false;
 		}
-		$home = $this->plugin->getProvider()->getHome($player->getName(), $args[1]);
-		$sender->teleport($home);
+		$homeLocation = $this->plugin->getProvider()->getHome($player->getName(), $args[1]);
+		$this->plugin->getAPI()->teleportToHome($sender, $homeLocation);
 		$sender->sendMessage($this->prefix . str_replace("{home_name}", $args[1], Lang::get("command.admin.teleport.success")));
 		return true;
 	}
