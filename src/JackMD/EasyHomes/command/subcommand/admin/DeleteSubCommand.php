@@ -74,11 +74,12 @@ class DeleteSubCommand extends SubCommand{
 	public function getAliases(): array{
 		return Lang::get("command.admin.delete.aliases");
 	}
-	
+
 	/**
 	 * @param CommandSender $sender
 	 * @param array         $args
 	 * @return bool
+	 * @throws \ReflectionException
 	 */
 	public function execute(CommandSender $sender, array $args): bool{
 		if((count($args) > 2) || (!isset($args[0])) || (!isset($args[1]))){
@@ -94,7 +95,7 @@ class DeleteSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix .  str_replace("{home_name}", $args[1], Lang::get("command.admin.delete.home_not_exist")));
 			return false;
 		}
-		$this->plugin->getProvider()->deleteHome($player->getName(), $args[1]);
+		$this->plugin->getAPI()->deleteHome($player->getName(), $args[1]);
 		$sender->sendMessage($this->prefix . str_replace(["{player}", "{home_name}"], [$player->getName(), $args[1]], Lang::get("command.admin.delete.success")));
 		return true;
 	}

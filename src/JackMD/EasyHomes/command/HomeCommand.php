@@ -137,7 +137,7 @@ class HomeCommand extends PluginCommand{
 				return false;
 			}
 			$homeLocation = $this->plugin->getProvider()->getHome($playerName, $home[0]);
-			$sender->teleport($homeLocation);
+			$this->plugin->getAPI()->teleportToHome($sender, $homeLocation);
 			$sender->sendMessage($this->plugin->prefix . str_replace("{home_name}", $home[0], Lang::get("command.normal.teleport.success")));
 			return true;
 		}

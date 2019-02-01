@@ -74,11 +74,12 @@ class DeleteSubCommand extends SubCommand{
 	public function getAliases(): array{
 		return Lang::get("command.normal.delete.aliases");
 	}
-	
+
 	/**
 	 * @param CommandSender|Player $sender
-	 * @param array         $args
+	 * @param array                $args
 	 * @return bool
+	 * @throws \ReflectionException
 	 */
 	public function execute(CommandSender $sender, array $args): bool{
 		if(!isset($args[0])){
@@ -89,7 +90,7 @@ class DeleteSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix . Lang::get("command.normal.delete.no_home"));
             return false;
         }
-		$this->plugin->getProvider()->deleteHome($sender->getName(), $args[0]);
+		$this->plugin->getAPI()->deleteHome($sender->getName(), $args[0]);
         $sender->sendMessage($this->prefix . str_replace("{home_name}", $args[0], Lang::get("command.normal.delete.success")));
         return true;
     }
