@@ -103,7 +103,7 @@ class YamlProvider implements ProviderInterface{
 	
 	public function getHomes(string $player): ?array{
 		$config = new Config($this->plugin->getDataFolder() . "data/" . strtolower($player) . ".yml", Config::YAML);
-		return $config->exists("homes") ? array_keys($config->getAll()["homes"]) : null;
+		return $config->exists("homes") ? array_map("strval", array_keys($config->getAll()["homes"])) : null;
 	}
 	
 	public function homeExists(string $player, string $home): bool{

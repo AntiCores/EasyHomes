@@ -136,7 +136,8 @@ class SQLiteProvider implements ProviderInterface{
 			$homes[] = $resultArr['home'];
 			$i = $i + 1;
 		}
-		return $homes;
+
+		return array_map("strval", $homes);
 	}
 	
 	/**
