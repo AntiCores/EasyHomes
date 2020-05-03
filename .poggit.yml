@@ -4,6 +4,8 @@ branches:
 projects:
   EasyHomes:
     path: ""
+    lint:
+      phpstan: false
     icon: meta/EasyHomes.png
     libs:
       - src: jojoe77777/FormAPI/libFormAPI
