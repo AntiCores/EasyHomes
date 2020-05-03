@@ -32,7 +32,7 @@
 
 # DO NOT EDIT THIS VALUE.
 # ONLY FOR INTERNAL USE.
-lang-version: "SelenaGomez"
+lang-version: 2
 
 command:
 
@@ -128,7 +128,7 @@ command:
         usage: "/ha setlimit [string:player] [int:count]"
         desc: "Set a limit to the maximum homes a player can get. (Alias: 'sl')."
         aliases: ["sl"]
-        success: "{player} home limit has successfully been updated to {home_limit}"
+        success: "{player}'s home limit has successfully been updated to {home_limit}"
 
       get:
         name: "getlimit"
@@ -136,6 +136,13 @@ command:
         desc: "Get the home limit of a player. (Alias: 'gl')."
         aliases: ["gl"]
         success: "{player}'s home limit is {home_limit}"
+
+      increase:
+        name: "increaselimit"
+        usage: "/ha ilimit [string:player] [int:count]"
+        desc: "Increase the home limit of a player. (Alias: 'ilimit', 'il')."
+        aliases: ["ilimit", "il"]
+        success: "{player}'s home limit has successfully been updated to {new_limit}"
 
     list:
       name: "list"

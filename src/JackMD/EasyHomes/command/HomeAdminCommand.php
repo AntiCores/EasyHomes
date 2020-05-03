@@ -35,6 +35,7 @@ namespace JackMD\EasyHomes\command;
 use JackMD\EasyHomes\command\subcommand\admin\DeleteSubCommand;
 use JackMD\EasyHomes\command\subcommand\admin\GetLimitSubCommand;
 use JackMD\EasyHomes\command\subcommand\admin\HelpSubCommand;
+use JackMD\EasyHomes\command\subcommand\admin\IncreaseLimitSubCommand;
 use JackMD\EasyHomes\command\subcommand\admin\ListSubCommand;
 use JackMD\EasyHomes\command\subcommand\admin\SetLimitSubCommand;
 use JackMD\EasyHomes\command\subcommand\admin\SetSubCommand;
@@ -77,7 +78,8 @@ class HomeAdminCommand extends PluginCommand{
 		$this->loadSubCommand(new ListSubCommand($plugin));
 		$this->loadSubCommand(new SetSubCommand($plugin));
 		$this->loadSubCommand(new TeleportSubCommand($plugin));
-		
+		$this->loadSubCommand(new IncreaseLimitSubCommand($plugin));
+
 		$plugin->getLogger()->debug("Admin home commands registered.");
 	}
 	

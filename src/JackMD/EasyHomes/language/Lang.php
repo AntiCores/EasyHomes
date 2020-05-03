@@ -39,8 +39,8 @@ class Lang{
 	
 	/** @var Config */
 	private static $lang;
-	/** @var string */
-	private const LANG_VERSION = "SelenaGomez";
+	/** @var int */
+	private const LANG_VERSION = 2;
 	
 	/**
 	 * @param Main $plugin
@@ -61,7 +61,6 @@ class Lang{
 			$plugin->saveResource("lang.yml");
 			$plugin->getLogger()->critical("Your language file is outdated.");
 			$plugin->getLogger()->notice("Your old language has been saved as lang_old.yml and a new language file has been generated.");
-			return;
 		}
 	}
 	
