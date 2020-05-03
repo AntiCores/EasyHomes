@@ -48,7 +48,8 @@
 |Admin form|`/homeadmin`|`eh.command.admin`|`op`|
 |Delete a player home|`/homeadmin delete [string:player] [string:home]`|`eh.command.admin.del`|`op`|
 |Get player's home limit|`/homeadmin getlimit [string:player]`|`eh.command.admin.limit.get`|`op`|
-|Set player's home limit|`/homeadmin setlimit [string:player]`|`eh.command.admin.limit.set`|`op`|
+|Set player's home limit|`/homeadmin setlimit [string:player] [int:count]`|`eh.command.admin.limit.set`|`op`|
+|Increase player's home limit|`/homeadmin ilimit [string:player] [int:count]`|`eh.command.admin.limit.increase`|`op`|
 |Help command|`/homeadmin help`|`eh.command.admin.help`|`op`|
 |List player's homes|`/homeadmin list [string:player]`|`eh.command.admin.list`|`op`|
 |Set player's home|`/homeadmin set [string:player] [string:home]`|`eh.command.admin.set`|`op`|

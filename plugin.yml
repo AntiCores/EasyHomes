@@ -37,6 +37,9 @@ permissions:
       eh.command.admin.limit.set:
         default: op
         description: Allows user to set the home limit of a player
+      eh.command.admin.limit.increase:
+        default: op
+        description: Allows user to increase the home limit of a player
       eh.command.admin.help:
         default: op
         description: Allows user to use admin help command
