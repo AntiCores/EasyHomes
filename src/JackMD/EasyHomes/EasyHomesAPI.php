@@ -32,7 +32,6 @@ declare(strict_types = 1);
 
 namespace JackMD\EasyHomes;
 
-
 use JackMD\EasyHomes\event\events\PlayerDeleteHomeEvent;
 use JackMD\EasyHomes\event\events\PlayerRegisterEvent;
 use JackMD\EasyHomes\event\events\PlayerSetHomeEvent;

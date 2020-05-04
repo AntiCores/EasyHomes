@@ -34,7 +34,6 @@ namespace JackMD\EasyHomes\event\events;
 
 use JackMD\EasyHomes\EasyHomesAPI;
 use JackMD\EasyHomes\event\BaseEvent;
-use pocketmine\event\Cancellable;
 
 class PlayerRegisterEvent extends BaseEvent{
 
