@@ -289,7 +289,7 @@ class HomeAdminForm{
 			}
 			$home = $homeList[$result[1]];
 			$homeLocation = $plugin->getProvider()->getHome($user->getName(), $home);
-			$plugin->getAPI()->teleportToHome($player, $homeLocation);
+			$plugin->getAPI()->teleportToHome($player, $homeLocation, true);
 			self::homeTeleportSuccessful($player, $home);
 			return;
 		});
