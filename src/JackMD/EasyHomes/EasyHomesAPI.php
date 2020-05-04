@@ -63,64 +63,52 @@ class EasyHomesAPI{
 
 	/**
 	 * Registers a player into the database.
-	 *
-	 * @param string $playerName
-	 * @throws \ReflectionException
 	 */
-	public function registerPlayer(string $playerName): void{
+	public function registerPlayer(string $playerName): bool{
 		$event = new PlayerRegisterEvent($this, $playerName);
 		$event->call();
 
 		if($event->isCancelled()){
-			return;
+			return false;
 		}
 
 		$this->plugin->getProvider()->registerPlayer($playerName);
+		return true;
 	}
 
-	/**
-	 * @param string   $player
-	 * @param string   $home
-	 * @param Location $location
-	 * @param float    $yaw
-	 * @param float    $pitch
-	 * @throws \ReflectionException
-	 */
-	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch): void{
+	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch): bool{
 		$event = new PlayerSetHomeEvent($this, $player, $home, $location, $yaw, $pitch);
 		$event->call();
 
 		if($event->isCancelled()){
-			return;
+			return false;
 		}
 
 		$this->plugin->getProvider()->setHome($player, $home, $location, $yaw, $pitch);
+		return true;
 	}
 
-	/**
-	 * @param string   $player
-	 * @param string   $home
-	 * @throws \ReflectionException
-	 */
-	public function deleteHome(string $player, string $home): void{
+	public function deleteHome(string $player, string $home): bool{
 		$event = new PlayerDeleteHomeEvent($this, $player, $home);
 		$event->call();
 
 		if($event->isCancelled()){
-			return;
+			return false;
 		}
 
 		$this->plugin->getProvider()->deleteHome($player, $home);
+		return true;
 	}
 
-	public function teleportToHome(Player $player, Location $homeLocation){
-		$event = new PlayerTeleportHomeEvent($this, $player, $homeLocation);
+	public function teleportToHome(Player $player, Location $homeLocation, bool $isAdmin = false): bool{
+		$event = new PlayerTeleportHomeEvent($this, $player, $homeLocation, $isAdmin);
 		$event->call();
 
 		if($event->isCancelled()){
-			return;
+			return false;
 		}
 
 		$player->teleport($homeLocation);
+		return true;
 	}
 }
