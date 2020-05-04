@@ -40,7 +40,7 @@ use pocketmine\Player;
 
 class PlayerTeleportHomeEvent extends BaseEvent implements Cancellable{
 
-	/** @var string */
+	/** @var Player */
 	private $player;
 	/** @var Location */
 	private $homeLocation;
@@ -55,7 +55,7 @@ class PlayerTeleportHomeEvent extends BaseEvent implements Cancellable{
 		$this->isAdmin = $isAdmin;
 	}
 
-	public function getPlayer(): string{
+	public function getPlayer(): Player{
 		return $this->player;
 	}
 
