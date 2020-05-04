@@ -95,7 +95,7 @@ class DeleteSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix .  str_replace("{home_name}", $args[1], Lang::get("command.admin.delete.home_not_exist")));
 			return false;
 		}
-		$this->plugin->getAPI()->deleteHome($player->getName(), $args[1]);
+		$this->plugin->getAPI()->deleteHome($player->getName(), $args[1], true);
 		$sender->sendMessage($this->prefix . str_replace(["{player}", "{home_name}"], [$player->getName(), $args[1]], Lang::get("command.admin.delete.success")));
 		return true;
 	}

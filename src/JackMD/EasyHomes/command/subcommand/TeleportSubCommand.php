@@ -96,8 +96,9 @@ class TeleportSubCommand extends SubCommand{
             return false;
         }
         $homeLocation = $this->plugin->getProvider()->getHome($sender->getName(), $args[0]);
-		$this->plugin->getAPI()->teleportToHome($sender, $homeLocation);
-        $sender->sendMessage($this->prefix . str_replace("{home_name}", $args[0], Lang::get("command.normal.teleport.success")));
+		if($this->plugin->getAPI()->teleportToHome($sender, $homeLocation)){
+			$sender->sendMessage($this->prefix . str_replace("{home_name}", $args[0], Lang::get("command.normal.teleport.success")));
+		}
         return true;
     }
 }

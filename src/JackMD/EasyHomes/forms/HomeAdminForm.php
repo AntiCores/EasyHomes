@@ -120,7 +120,7 @@ class HomeAdminForm{
 				}
 			}
 			$condition = ($plugin->getProvider()->homeExists($user->getName(), $homeName) ? Lang::get("form.admin.create.condition.updated") : Lang::get("form.admin.create.condition.created"));
-			$plugin->getAPI()->setHome($user->getName(), $homeName, $player->getLocation(), $player->getYaw(), $player->getPitch());
+			$plugin->getAPI()->setHome($user->getName(), $homeName, $player->getLocation(), $player->getYaw(), $player->getPitch(), true);
 			self::homeCreateSuccessful($player, $homeName, $condition);
 			return;
 		});
@@ -370,7 +370,7 @@ class HomeAdminForm{
 				return;
 			}
 			$home = $homeList[$result[1]];
-			$plugin->getAPI()->deleteHome($user->getName(), $home);
+			$plugin->getAPI()->deleteHome($user->getName(), $home, true);
 			self::homeDeleteSuccessful($player, $home);
 			return;
 		});

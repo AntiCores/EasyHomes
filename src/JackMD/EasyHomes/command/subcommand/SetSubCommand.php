@@ -98,8 +98,9 @@ class SetSubCommand extends SubCommand{
 			}
 		}
 		$condition = ($this->plugin->getProvider()->homeExists($sender->getName(), $args[0]) ? Lang::get("command.normal.set.condition.updated") : Lang::get("command.normal.set.condition.created"));
-		$this->plugin->getAPI()->setHome($sender->getName(), $args[0], $sender->getLocation(), $sender->getYaw(), $sender->getPitch());
-		$sender->sendMessage($this->prefix . str_replace(["{home_name}", "{condition}"], [$args[0], $condition], Lang::get("command.normal.set.success")));
+		if($this->plugin->getAPI()->setHome($sender->getName(), $args[0], $sender->getLocation(), $sender->getYaw(), $sender->getPitch())){
+			$sender->sendMessage($this->prefix . str_replace(["{home_name}", "{condition}"], [$args[0], $condition], Lang::get("command.normal.set.success")));
+		}
 		return true;
 	}
 }

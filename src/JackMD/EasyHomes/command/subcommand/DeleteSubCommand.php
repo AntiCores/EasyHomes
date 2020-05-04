@@ -90,8 +90,9 @@ class DeleteSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix . Lang::get("command.normal.delete.no_home"));
             return false;
         }
-		$this->plugin->getAPI()->deleteHome($sender->getName(), $args[0]);
-        $sender->sendMessage($this->prefix . str_replace("{home_name}", $args[0], Lang::get("command.normal.delete.success")));
+		if($this->plugin->getAPI()->deleteHome($sender->getName(), $args[0])){
+			$sender->sendMessage($this->prefix . str_replace("{home_name}", $args[0], Lang::get("command.normal.delete.success")));
+		}
         return true;
     }
 }

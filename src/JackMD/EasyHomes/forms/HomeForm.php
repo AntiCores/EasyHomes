@@ -92,8 +92,9 @@ class HomeForm{
 				}
 			}
 			$condition = ($plugin->getProvider()->homeExists($player->getName(), $homeName) ? Lang::get("form.normal.create.condition.updated") : Lang::get("form.normal.create.condition.created"));
-			$plugin->getAPI()->setHome($player->getName(), $homeName, $player->getLocation(), $player->getYaw(), $player->getPitch());
-			self::homeCreateSuccessful($player, $homeName, $condition);
+			if($plugin->getAPI()->setHome($player->getName(), $homeName, $player->getLocation(), $player->getYaw(), $player->getPitch())){
+				self::homeCreateSuccessful($player, $homeName, $condition);
+			}
 			return;
 		});
 		$form->setTitle(Lang::get("form.normal.title"));
@@ -172,8 +173,9 @@ class HomeForm{
 			}
 			$home = $list[$result[1]];
 			$homeLocation = $plugin->getProvider()->getHome($player->getName(), $home);
-			$plugin->getAPI()->teleportToHome($player, $homeLocation);
-			self::homeTeleportSuccessful($player, $home);
+			if($plugin->getAPI()->teleportToHome($player, $homeLocation)){
+				self::homeTeleportSuccessful($player, $home);
+			}
 			return;
 		});
 		if($list == null){
@@ -228,8 +230,9 @@ class HomeForm{
 				return;
 			}
 			$home = $list[$result[1]];
-			$plugin->getAPI()->deleteHome($player->getName(), $home);
-			self::homeDeleteSuccessful($player, $home);
+			if($plugin->getAPI()->deleteHome($player->getName(), $home)){
+				self::homeDeleteSuccessful($player, $home);
+			}
 			return;
 		});
 		if($list == null){
