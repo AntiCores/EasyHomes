@@ -63,11 +63,10 @@ class EasyHomesAPI{
 	/**
 	 * Registers a player into the database.
 	 */
-	public function registerPlayer(string $playerName): bool{
+	public function registerPlayer(string $playerName): void{
 		$event = new PlayerRegisterEvent($this, $playerName);
 		$event->call();
 		$this->plugin->getProvider()->registerPlayer($playerName);
-		return true;
 	}
 
 	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch): bool{
