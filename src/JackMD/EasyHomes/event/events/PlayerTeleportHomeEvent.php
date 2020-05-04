@@ -44,6 +44,8 @@ class PlayerTeleportHomeEvent extends BaseEvent implements Cancellable{
 	private $player;
 	/** @var Location */
 	private $homeLocation;
+	/** @var bool */
+	private $isAdmin;
 
 	/**
 	 * PlayerTeleportHomeEvent constructor.
@@ -51,12 +53,14 @@ class PlayerTeleportHomeEvent extends BaseEvent implements Cancellable{
 	 * @param EasyHomesAPI $api
 	 * @param Player       $player
 	 * @param Location     $homeLocation
+	 * @param bool         $isAdmin
 	 */
-	public function __construct(EasyHomesAPI $api, Player $player, Location $homeLocation){
+	public function __construct(EasyHomesAPI $api, Player $player, Location $homeLocation, bool $isAdmin = false){
 		parent::__construct($api);
 
 		$this->player = $player;
 		$this->homeLocation = $homeLocation;
+		$this->isAdmin = $isAdmin;
 	}
 
 	/**
@@ -71,5 +75,12 @@ class PlayerTeleportHomeEvent extends BaseEvent implements Cancellable{
 	 */
 	public function getHomeLocation(): Location{
 		return $this->homeLocation;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isAdmin(): bool{
+		return $this->isAdmin;
 	}
 }
