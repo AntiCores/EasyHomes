@@ -36,7 +36,7 @@ use JackMD\EasyHomes\EasyHomesAPI;
 use JackMD\EasyHomes\event\BaseEvent;
 use pocketmine\event\Cancellable;
 
-class PlayerRegisterEvent extends BaseEvent implements Cancellable{
+class PlayerRegisterEvent extends BaseEvent{
 
 	/** @var string */
 	private $playerName;

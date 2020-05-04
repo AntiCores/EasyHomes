@@ -67,11 +67,6 @@ class EasyHomesAPI{
 	public function registerPlayer(string $playerName): bool{
 		$event = new PlayerRegisterEvent($this, $playerName);
 		$event->call();
-
-		if($event->isCancelled()){
-			return false;
-		}
-
 		$this->plugin->getProvider()->registerPlayer($playerName);
 		return true;
 	}
