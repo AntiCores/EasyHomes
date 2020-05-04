@@ -42,39 +42,30 @@ class PlayerDeleteHomeEvent extends BaseEvent implements Cancellable{
 	private $playerName;
 	/** @var string */
 	private $home;
+	/** @var bool */
+	private $isAdmin;
 
-	/**
-	 * PlayerDeleteHomeEvent constructor.
-	 *
-	 * @param EasyHomesAPI $api
-	 * @param string       $playerName
-	 * @param string       $home
-	 */
-	public function __construct(EasyHomesAPI $api, string $playerName, string $home){
+	public function __construct(EasyHomesAPI $api, string $playerName, string $home, bool $isAdmin = false){
 		parent::__construct($api);
 
 		$this->playerName = $playerName;
 		$this->home = $home;
+		$this->isAdmin = $isAdmin;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getPlayerName(): string{
 		return $this->playerName;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getHomeName(): string{
 		return $this->home;
 	}
 
-	/**
-	 * @param string $home
-	 */
 	public function setHomeName(string $home): void{
 		$this->home = $home;
+	}
+
+	public function isExecutedByAdmin(): bool{
+		return $this->isAdmin;
 	}
 }

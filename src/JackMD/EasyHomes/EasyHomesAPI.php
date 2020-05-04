@@ -44,33 +44,22 @@ class EasyHomesAPI{
 	/** @var Main */
 	private $plugin;
 
-	/**
-	 * EasyHomesAPI constructor.
-	 *
-	 * @param Main $plugin
-	 */
 	public function __construct(Main $plugin){
 		$this->plugin = $plugin;
 	}
 
-	/**
-	 * @return Main
-	 */
 	public final function getPlugin(): Main{
 		return $this->plugin;
 	}
 
-	/**
-	 * Registers a player into the database.
-	 */
 	public function registerPlayer(string $playerName): void{
 		$event = new PlayerRegisterEvent($this, $playerName);
 		$event->call();
 		$this->plugin->getProvider()->registerPlayer($playerName);
 	}
 
-	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch): bool{
-		$event = new PlayerSetHomeEvent($this, $player, $home, $location, $yaw, $pitch);
+	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch, bool $isAdmin = false): bool{
+		$event = new PlayerSetHomeEvent($this, $player, $home, $location, $yaw, $pitch, $isAdmin);
 		$event->call();
 
 		if($event->isCancelled()){
@@ -81,8 +70,8 @@ class EasyHomesAPI{
 		return true;
 	}
 
-	public function deleteHome(string $player, string $home): bool{
-		$event = new PlayerDeleteHomeEvent($this, $player, $home);
+	public function deleteHome(string $player, string $home, bool $isAdmin = false): bool{
+		$event = new PlayerDeleteHomeEvent($this, $player, $home, $isAdmin);
 		$event->call();
 
 		if($event->isCancelled()){

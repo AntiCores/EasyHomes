@@ -49,18 +49,10 @@ class PlayerSetHomeEvent extends BaseEvent implements Cancellable{
 	private $yaw;
 	/** @var float */
 	private $pitch;
+	/** @var bool */
+	private $isAdmin;
 
-	/**
-	 * PlayerSetHomeEvent constructor.
-	 *
-	 * @param EasyHomesAPI $api
-	 * @param string       $playerName
-	 * @param string       $home
-	 * @param Location     $location
-	 * @param float        $yaw
-	 * @param float        $pitch
-	 */
-	public function __construct(EasyHomesAPI $api, string $playerName, string $home, Location $location, float $yaw, float $pitch){
+	public function __construct(EasyHomesAPI $api, string $playerName, string $home, Location $location, float $yaw, float $pitch, bool $isAdmin = false){
 		parent::__construct($api);
 
 		$this->playerName = $playerName;
@@ -68,68 +60,46 @@ class PlayerSetHomeEvent extends BaseEvent implements Cancellable{
 		$this->location = $location;
 		$this->yaw = $yaw;
 		$this->pitch = $pitch;
+		$this->isAdmin = $isAdmin;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getPlayerName(): string{
 		return $this->playerName;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getHomeName(): string{
 		return $this->home;
 	}
 
-	/**
-	 * @param string $home
-	 */
 	public function setHomeName(string $home): void{
 		$this->home = $home;
 	}
 
-	/**
-	 * @return Location
-	 */
 	public function getLocation(): Location{
 		return $this->location;
 	}
 
-	/**
-	 * @param Location $location
-	 */
 	public function setLocation(Location $location): void{
 		$this->location = $location;
 	}
 
-	/**
-	 * @return float
-	 */
 	public function getYaw(): float{
 		return $this->yaw;
 	}
 
-	/**
-	 * @param float $yaw
-	 */
 	public function setYaw(float $yaw): void{
 		$this->yaw = $yaw;
 	}
 
-	/**
-	 * @return float
-	 */
 	public function getPitch(): float{
 		return $this->pitch;
 	}
 
-	/**
-	 * @param float $pitch
-	 */
 	public function setPitch(float $pitch): void{
 		$this->pitch = $pitch;
+	}
+
+	public function isExecutedByAdmin(): bool{
+		return $this->isAdmin;
 	}
 }
