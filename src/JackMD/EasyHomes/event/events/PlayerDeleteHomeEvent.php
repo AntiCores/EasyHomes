@@ -65,13 +65,6 @@ class PlayerDeleteHomeEvent extends BaseEvent implements Cancellable{
 	}
 
 	/**
-	 * @param string $playerName
-	 */
-	public function setPlayerName(string $playerName): void{
-		$this->playerName = $playerName;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getHomeName(): string{

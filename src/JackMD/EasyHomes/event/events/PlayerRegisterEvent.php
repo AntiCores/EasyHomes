@@ -59,11 +59,4 @@ class PlayerRegisterEvent extends BaseEvent implements Cancellable{
 	public function getPlayerName(): string{
 		return $this->playerName;
 	}
-
-	/**
-	 * @param string $playerName
-	 */
-	public function setPlayerName(string $playerName): void{
-		$this->playerName = $playerName;
-	}
 }
