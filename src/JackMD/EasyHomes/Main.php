@@ -65,8 +65,6 @@ class Main extends PluginBase{
 		$this->setProvider();
 		$this->getProvider()->prepare();
 		$this->registerCommands();
-
-		$this->getLogger()->info("EasyHomes Plugin Enabled.");
 	}
 	
 	private function checkFormAPI(): void{
