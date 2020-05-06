@@ -100,11 +100,11 @@ class Main extends PluginBase{
 		switch(strtolower($providerName)){
 			case "sqlite":
 				$provider = new SQLiteProvider($this);
-				$this->getLogger()->notice("SQLiteProvider successfully enabled.");
+				$this->getLogger()->debug("SQLiteProvider successfully enabled.");
 				break;
 			case "yaml":
 				$provider = new YamlProvider($this);
-				$this->getLogger()->notice("YamlProvider successfully enabled.");
+				$this->getLogger()->debug("YamlProvider successfully enabled.");
 				break;
 			default:
 				$this->getLogger()->error("Please set a valid data-provider in config.yml. Disabling plugin...");
