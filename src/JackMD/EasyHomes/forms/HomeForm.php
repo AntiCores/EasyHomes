@@ -33,7 +33,7 @@ declare(strict_types = 1);
 namespace JackMD\EasyHomes\forms;
 
 use JackMD\EasyHomes\language\Lang;
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\ModalForm;
 use jojoe77777\FormAPI\SimpleForm;
@@ -42,10 +42,10 @@ use pocketmine\Player;
 class HomeForm{
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	public static function mainForm(Main $plugin, Player $player){
+	public static function mainForm(EasyHomes $plugin, Player $player){
 		$form = new SimpleForm(function(Player $player, $result) use ($plugin){
 			if($result === null){
 				return;
@@ -71,10 +71,10 @@ class HomeForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function createForm(Main $plugin, Player $player){
+	private static function createForm(EasyHomes $plugin, Player $player){
 		$form = new CustomForm(function(Player $player, $result) use ($plugin){
 			if($result === null){
 				return;
@@ -103,10 +103,10 @@ class HomeForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function errorHomeEmpty(Main $plugin, Player $player){
+	private static function errorHomeEmpty(EasyHomes $plugin, Player $player){
 		$form = new ModalForm(function(Player $player, bool $result) use ($plugin){
 			if($result){
 				self::createForm($plugin, $player);
@@ -121,12 +121,12 @@ class HomeForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
-	 * @param string $content
-	 * @param string $button
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
+	 * @param string    $content
+	 * @param string    $button
 	 */
-	private static function errorMaxHomes(Main $plugin, Player $player, string $content, string $button){
+	private static function errorMaxHomes(EasyHomes $plugin, Player $player, string $content, string $button){
 		$form = new SimpleForm(function(Player $player, $result){
 			if($result === null){
 				return;
@@ -156,10 +156,10 @@ class HomeForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function teleportForm(Main $plugin, Player $player){
+	private static function teleportForm(EasyHomes $plugin, Player $player){
 		$list = $plugin->getProvider()->getHomes($player->getName());
 		$form = new CustomForm(function(Player $player, $result) use ($plugin, $list){
 			if($result === null){
@@ -220,10 +220,10 @@ class HomeForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function deleteForm(Main $plugin, Player $player){
+	private static function deleteForm(EasyHomes $plugin, Player $player){
 		$list = $plugin->getProvider()->getHomes($player->getName());
 		$form = new CustomForm(function(Player $player, $result) use ($plugin, $list){
 			if($result === null){

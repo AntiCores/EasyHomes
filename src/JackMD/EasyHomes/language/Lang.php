@@ -32,7 +32,7 @@ declare(strict_types = 1);
 
 namespace JackMD\EasyHomes\language;
 
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use pocketmine\utils\Config;
 
 class Lang{
@@ -43,18 +43,18 @@ class Lang{
 	private const LANG_VERSION = 2;
 	
 	/**
-	 * @param Main $plugin
+	 * @param EasyHomes $plugin
 	 */
-	public static function init(Main $plugin): void{
+	public static function init(EasyHomes $plugin): void{
 		$plugin->saveResource("lang.yml");
 		self::checkLang($plugin);
 		self::$lang = new Config($plugin->getDataFolder() . "lang.yml", Config::YAML);
 	}
 	
 	/**
-	 * @param Main $plugin
+	 * @param EasyHomes $plugin
 	 */
-	private static function checkLang(Main $plugin): void{
+	private static function checkLang(EasyHomes $plugin): void{
 		$lang = new Config($plugin->getDataFolder() . "lang.yml", Config::YAML);
 		if((!$lang->exists("lang-version")) || ($lang->get("lang-version") !== self::LANG_VERSION)){
 			rename($plugin->getDataFolder() . "lang.yml", $plugin->getDataFolder() . "lang_old.yml");

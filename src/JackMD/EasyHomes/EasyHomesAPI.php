@@ -41,14 +41,14 @@ use pocketmine\Player;
 
 class EasyHomesAPI{
 
-	/** @var Main */
+	/** @var EasyHomes */
 	private $plugin;
 
-	public function __construct(Main $plugin){
+	public function __construct(EasyHomes $plugin){
 		$this->plugin = $plugin;
 	}
 
-	public final function getPlugin(): Main{
+	public final function getPlugin(): EasyHomes{
 		return $this->plugin;
 	}
 

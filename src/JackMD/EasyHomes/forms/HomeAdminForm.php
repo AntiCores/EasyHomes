@@ -33,7 +33,7 @@ declare(strict_types = 1);
 namespace JackMD\EasyHomes\forms;
 
 use JackMD\EasyHomes\language\Lang;
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use JackMD\EasyHomes\utils\Utils;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\ModalForm;
@@ -44,10 +44,10 @@ use pocketmine\Player;
 class HomeAdminForm{
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	public static function mainForm(Main $plugin, Player $player){
+	public static function mainForm(EasyHomes $plugin, Player $player){
 		$form = new SimpleForm(function(Player $player, $result) use ($plugin){
 			if($result === null){
 				return;
@@ -81,10 +81,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function createForm(Main $plugin, Player $player){
+	private static function createForm(EasyHomes $plugin, Player $player){
 		$list = [];
 		foreach($plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
 			$list[] = $onlinePlayer->getName();
@@ -165,10 +165,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function errorHomeEmpty(Main $plugin, Player $player){
+	private static function errorHomeEmpty(EasyHomes $plugin, Player $player){
 		$form = new ModalForm(function(Player $player, bool $result) use ($plugin){
 			if($result){
 				self::createForm($plugin, $player);
@@ -183,13 +183,13 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
-	 * @param Player $user
-	 * @param string $content
-	 * @param string $button
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
+	 * @param Player    $user
+	 * @param string    $content
+	 * @param string    $button
 	 */
-	private static function errorMaxHomes(Main $plugin, Player $player, Player $user, string $content, string $button){
+	private static function errorMaxHomes(EasyHomes $plugin, Player $player, Player $user, string $content, string $button){
 		$form = new SimpleForm(function(Player $player, $result){
 			if($result === null){
 				return;
@@ -219,10 +219,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function teleportForm(Main $plugin, Player $player){
+	private static function teleportForm(EasyHomes $plugin, Player $player){
 		$playerList = [];
 		foreach($plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
 			$playerList[] = $onlinePlayer->getName();
@@ -277,11 +277,11 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main                 $plugin
+	 * @param EasyHomes            $plugin
 	 * @param Player               $player
 	 * @param OfflinePlayer|Player $user
 	 */
-	private static function userHomeTeleportSelect(Main $plugin, Player $player, $user){
+	private static function userHomeTeleportSelect(EasyHomes $plugin, Player $player, $user){
 		$homeList = $plugin->getProvider()->getHomes($user->getName());
 		$form = new CustomForm(function(Player $player, $result) use ($plugin, $user, $homeList){
 			if($result === null){
@@ -316,10 +316,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function deleteForm(Main $plugin, Player $player){
+	private static function deleteForm(EasyHomes $plugin, Player $player){
 		$playerList = [];
 		foreach($plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
 			$playerList[] = $onlinePlayer->getName();
@@ -359,11 +359,11 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main                 $plugin
+	 * @param EasyHomes            $plugin
 	 * @param Player               $player
 	 * @param OfflinePlayer|Player $user
 	 */
-	private static function userHomeDeleteSelect(Main $plugin, Player $player, $user){
+	private static function userHomeDeleteSelect(EasyHomes $plugin, Player $player, $user){
 		$homeList = $plugin->getProvider()->getHomes($user->getName());
 		$form = new CustomForm(function(Player $player, $result) use ($plugin, $user, $homeList){
 			if($result === null){
@@ -397,10 +397,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function getLimitForm(Main $plugin, Player $player){
+	private static function getLimitForm(EasyHomes $plugin, Player $player){
 		$playerList = [];
 		foreach($plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
 			$playerList[] = $onlinePlayer->getName();
@@ -452,10 +452,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function setLimitForm(Main $plugin, Player $player){
+	private static function setLimitForm(EasyHomes $plugin, Player $player){
 		$playerList = [];
 		foreach($plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
 			$playerList[] = $onlinePlayer->getName();
@@ -497,10 +497,10 @@ class HomeAdminForm{
 	}
 	
 	/**
-	 * @param Main   $plugin
-	 * @param Player $player
+	 * @param EasyHomes $plugin
+	 * @param Player    $player
 	 */
-	private static function errorLimitEmpty(Main $plugin, Player $player){
+	private static function errorLimitEmpty(EasyHomes $plugin, Player $player){
 		$form = new ModalForm(function(Player $player, bool $result) use ($plugin){
 			if($result){
 				self::setLimitForm($plugin, $player);

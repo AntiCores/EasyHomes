@@ -32,7 +32,7 @@ declare(strict_types = 1);
 
 namespace JackMD\EasyHomes\provider\providers;
 
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use JackMD\EasyHomes\provider\ProviderInterface;
 use JackMD\EasyHomes\utils\Utils;
 use pocketmine\level\Location;
@@ -40,15 +40,15 @@ use pocketmine\utils\Config;
 
 class YamlProvider implements ProviderInterface{
 	
-	/** @var Main */
+	/** @var EasyHomes */
 	private $plugin;
 	
 	/**
 	 * YamlProvider constructor.
 	 *
-	 * @param Main $plugin
+	 * @param EasyHomes $plugin
 	 */
-	public function __construct(Main $plugin){
+	public function __construct(EasyHomes $plugin){
 		$this->plugin = $plugin;
 	}
 	

@@ -40,14 +40,14 @@ use JackMD\EasyHomes\command\subcommand\SetSubCommand;
 use JackMD\EasyHomes\command\subcommand\TeleportSubCommand;
 use JackMD\EasyHomes\forms\HomeForm;
 use JackMD\EasyHomes\language\Lang;
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\Player;
 
 class HomeCommand extends PluginCommand{
 	
-	/** @var Main */
+	/** @var EasyHomes */
 	private $plugin;
 	
 	/** @var SubCommand[] $subCommands */
@@ -58,10 +58,10 @@ class HomeCommand extends PluginCommand{
 	/**
 	 * HomeCommand constructor.
 	 *
-	 * @param string $name
-	 * @param Main   $plugin
+	 * @param string    $name
+	 * @param EasyHomes $plugin
 	 */
-	public function __construct(string $name, Main $plugin){
+	public function __construct(string $name, EasyHomes $plugin){
 		parent::__construct($name, $plugin);
 		$this->plugin = $plugin;
 		

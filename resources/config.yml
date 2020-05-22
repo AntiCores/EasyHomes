@@ -28,7 +28,7 @@
 
 # DO NOT EDIT THIS VALUE.
 # ONLY FOR INTERNAL USE.
-config-version: "TaylorSwift"
+config-version: 1
 
 # Set the data provider which you would like to use.
 # Currently Available:
@@ -40,4 +40,19 @@ data-provider: "yaml"
 # The default home limit that a player gets.
 # You can give more homes to specific players using /home limit {string:player} {int:count}.
 default-home-limit: 10
+
+database:
+  # mysql, sqlite
+  type: sqlite
+
+  sqlite:
+    file: "data/homes.sqlite"
+
+  mysql:
+    host: "127.0.0.1"
+    username: "root"
+    password: ""
+    schema: "paroxityecon"
+
+    worker-limit: 2
 ...

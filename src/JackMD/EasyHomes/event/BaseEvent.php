@@ -33,7 +33,7 @@ declare(strict_types = 1);
 namespace JackMD\EasyHomes\event;
 
 use JackMD\EasyHomes\EasyHomesAPI;
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\plugin\Plugin;
 
@@ -52,7 +52,7 @@ abstract class BaseEvent extends PluginEvent{
     }
 
 	/**
-	 * @return Main|Plugin
+	 * @return EasyHomes|Plugin
 	 */
 	public final function getPlugin(): Plugin{
         return $this->api->getPlugin();

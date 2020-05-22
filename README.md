@@ -63,7 +63,7 @@ EasyHomes provides a simple API for developers wishing to use this plugin in the
 - First you need to get hold of the plugin. You can do so by:<br />
 ```php
 $easyHomes = Server::getInstance()->getPluginManager()->getPlugin("EasyHomes");
-if($easyHomes instanceof \JackMD\EasyHomes\Main){
+if($easyHomes instanceof \JackMD\EasyHomes\EasyHomes){
     //do whatever
 }
 ```

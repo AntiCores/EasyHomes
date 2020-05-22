@@ -32,7 +32,7 @@ declare(strict_types = 1);
 
 namespace JackMD\EasyHomes\provider;
 
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use pocketmine\level\Location;
 
 interface ProviderInterface{
@@ -40,9 +40,9 @@ interface ProviderInterface{
 	/**
 	 * ProviderInterface constructor.
 	 *
-	 * @param Main $plugin
+	 * @param EasyHomes $plugin
 	 */
-	public function __construct(Main $plugin);
+	public function __construct(EasyHomes $plugin);
 	
 	/**
 	 * Prepare the database. Developers wishing to make a provider should only use this and no one else.

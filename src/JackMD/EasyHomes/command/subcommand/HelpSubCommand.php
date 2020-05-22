@@ -35,7 +35,7 @@ namespace JackMD\EasyHomes\command\subcommand;
 use JackMD\EasyHomes\command\HomeCommand;
 use JackMD\EasyHomes\command\SubCommand;
 use JackMD\EasyHomes\language\Lang;
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use pocketmine\command\CommandSender;
 
 class HelpSubCommand extends SubCommand{
@@ -46,10 +46,10 @@ class HelpSubCommand extends SubCommand{
 	/**
 	 * HelpSubCommand constructor.
 	 *
-	 * @param Main        $plugin
+	 * @param EasyHomes   $plugin
 	 * @param HomeCommand $commands
 	 */
-	public function __construct(Main $plugin, HomeCommand $commands){
+	public function __construct(EasyHomes $plugin, HomeCommand $commands){
 		parent::__construct($plugin);
 		$this->commands = $commands;
 	}

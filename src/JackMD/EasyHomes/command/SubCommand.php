@@ -32,20 +32,20 @@ declare(strict_types = 1);
 
 namespace JackMD\EasyHomes\command;
 
-use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\EasyHomes;
 use pocketmine\command\CommandSender;
 
 abstract class SubCommand{
 	
-	/** @var Main $plugin */
+	/** @var EasyHomes $plugin */
 	public $plugin;
 	/** @var string */
 	public $prefix;
 	
 	/**
-	 * @param Main   $plugin
+	 * @param EasyHomes $plugin
 	 */
-	public function __construct(Main $plugin){
+	public function __construct(EasyHomes $plugin){
 		$this->plugin = $plugin;
 		$this->prefix = $plugin->prefix;
 	}

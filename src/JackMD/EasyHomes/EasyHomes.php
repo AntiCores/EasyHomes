@@ -42,10 +42,10 @@ use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
-class Main extends PluginBase{
+class EasyHomes extends PluginBase{
 	
-	/** @var string */
-	private const CONFIG_VERSION = "TaylorSwift";
+	/** @var int */
+	private const CONFIG_VERSION = 1;
 
 	/** @var string */
 	public $prefix = "§a[§eEasy§6Homes§a]§r ";
@@ -74,7 +74,8 @@ class Main extends PluginBase{
 	}
 	
 	private function checkConfig(): void{
-		$config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+		$config = $this->getConfig();
+
 		if((!$config->exists("config-version")) || ($config->get("config-version") !== self::CONFIG_VERSION)){
 			rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config_old.yml");
 			$this->saveResource("config.yml");
