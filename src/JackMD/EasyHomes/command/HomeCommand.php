@@ -41,6 +41,7 @@ use JackMD\EasyHomes\command\subcommand\TeleportSubCommand;
 use JackMD\EasyHomes\forms\HomeForm;
 use JackMD\EasyHomes\language\Lang;
 use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\Player;
@@ -125,6 +126,7 @@ class HomeCommand extends PluginCommand{
 				$sender->sendMessage($this->plugin->prefix . Lang::get("command.normal.default.usage"));
 				return false;
 			}
+			$home[0] = Utils::removeQuotes($home[0]);
 			$playerName = $sender->getName();
 			if($this->plugin->getProvider()->getHomes($playerName) !== null){
 				if(count($this->plugin->getProvider()->getHomes($playerName)) > $this->plugin->getProvider()->getMaxHomes($playerName)){

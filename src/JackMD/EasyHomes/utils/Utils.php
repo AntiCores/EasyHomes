@@ -37,6 +37,7 @@ use pocketmine\level\Location;
 use pocketmine\OfflinePlayer;
 use pocketmine\Player;
 use pocketmine\Server;
+use function str_replace;
 
 class Utils{
 	
@@ -82,5 +83,13 @@ class Utils{
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param string $string
+	 * @return string
+	 */
+	public static function removeQuotes(string $string): string{
+		return str_replace(["\"", "'"], "", $string);
 	}
 }

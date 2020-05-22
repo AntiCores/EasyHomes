@@ -34,6 +34,7 @@ namespace JackMD\EasyHomes\command\subcommand;
 
 use JackMD\EasyHomes\command\SubCommand;
 use JackMD\EasyHomes\language\Lang;
+use JackMD\EasyHomes\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 
@@ -85,6 +86,7 @@ class TeleportSubCommand extends SubCommand{
             $sender->sendMessage($this->prefix . $this->getUsage());
             return false;
         }
+		$args[0] = Utils::removeQuotes($args[0]);
 		if($this->plugin->getProvider()->getHomes($sender->getName()) !== null){
 			if(count($this->plugin->getProvider()->getHomes($sender->getName())) > $this->plugin->getProvider()->getMaxHomes($sender->getName())){
 				$sender->sendMessage($this->prefix . str_replace(["{homes}", "{max_homes}"], [count($this->plugin->getProvider()->getHomes($sender->getName())), $this->plugin->getProvider()->getMaxHomes($sender->getName())], Lang::get("command.normal.teleport.max_homes")));

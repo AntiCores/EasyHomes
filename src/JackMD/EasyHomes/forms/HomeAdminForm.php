@@ -111,7 +111,7 @@ class HomeAdminForm{
 				self::errorHomeEmpty($plugin, $player);
 				return;
 			}
-			$homeName = $result[4];
+			$homeName = Utils::removeQuotes($result[4]);
 			$plugin->getAPI()->registerPlayer($user->getName());
 			if($plugin->getProvider()->getHomes($user->getName()) !== null){
 				if(count($plugin->getProvider()->getHomes($user->getName())) >= $plugin->getProvider()->getMaxHomes($user->getName())){

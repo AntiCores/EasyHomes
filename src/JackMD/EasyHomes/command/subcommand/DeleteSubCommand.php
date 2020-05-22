@@ -34,6 +34,7 @@ namespace JackMD\EasyHomes\command\subcommand;
 
 use JackMD\EasyHomes\command\SubCommand;
 use JackMD\EasyHomes\language\Lang;
+use JackMD\EasyHomes\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 
@@ -86,7 +87,8 @@ class DeleteSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix . $this->getUsage());
             return false;
         }
-        if(!$this->plugin->getProvider()->homeExists($sender->getName(), $args[0])){
+		$args[0] = Utils::removeQuotes($args[0]);
+		if(!$this->plugin->getProvider()->homeExists($sender->getName(), $args[0])){
 			$sender->sendMessage($this->prefix . Lang::get("command.normal.delete.no_home"));
             return false;
         }

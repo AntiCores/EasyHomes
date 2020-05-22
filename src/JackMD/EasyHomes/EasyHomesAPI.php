@@ -36,6 +36,7 @@ use JackMD\EasyHomes\event\events\PlayerDeleteHomeEvent;
 use JackMD\EasyHomes\event\events\PlayerRegisterEvent;
 use JackMD\EasyHomes\event\events\PlayerSetHomeEvent;
 use JackMD\EasyHomes\event\events\PlayerTeleportHomeEvent;
+use JackMD\EasyHomes\utils\Utils;
 use pocketmine\level\Location;
 use pocketmine\Player;
 
@@ -59,6 +60,8 @@ class EasyHomesAPI{
 	}
 
 	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch, bool $isAdmin = false): bool{
+		$home = Utils::removeQuotes($home);
+
 		$event = new PlayerSetHomeEvent($this, $player, $home, $location, $yaw, $pitch, $isAdmin);
 		$event->call();
 
@@ -71,6 +74,8 @@ class EasyHomesAPI{
 	}
 
 	public function deleteHome(string $player, string $home, bool $isAdmin = false): bool{
+		$home = Utils::removeQuotes($home);
+
 		$event = new PlayerDeleteHomeEvent($this, $player, $home, $isAdmin);
 		$event->call();
 

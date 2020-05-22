@@ -34,6 +34,7 @@ namespace JackMD\EasyHomes\command\subcommand;
 
 use JackMD\EasyHomes\command\SubCommand;
 use JackMD\EasyHomes\language\Lang;
+use JackMD\EasyHomes\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 
@@ -90,6 +91,7 @@ class SetSubCommand extends SubCommand{
 			$sender->sendMessage($this->prefix . Lang::get("command.normal.set.invalid_home"));
 			return false;
 		}
+		$args[0] = Utils::removeQuotes($args[0]);
 		$this->plugin->getAPI()->registerPlayer($sender->getName());
 		if($this->plugin->getProvider()->getHomes($sender->getName()) !== null){
 			if(count($this->plugin->getProvider()->getHomes($sender->getName())) >= $this->plugin->getProvider()->getMaxHomes($sender->getName())){

@@ -36,6 +36,7 @@ use JackMD\EasyHomes\Main;
 use JackMD\EasyHomes\provider\ProviderInterface;
 use JackMD\EasyHomes\utils\Utils;
 use pocketmine\level\Location;
+use function strtolower;
 
 class SQLiteProvider implements ProviderInterface{
 	
@@ -74,8 +75,9 @@ class SQLiteProvider implements ProviderInterface{
 	 * @return bool
 	 */
 	public function playerExists(string $player): bool{
-		$playerName = strtolower($player);
-		$result = $this->homesDB->query("SELECT player FROM master WHERE player = '$playerName';");
+		$stmt = $this->homesDB->prepare("SELECT player FROM master WHERE player = :player;");
+		$stmt->bindValue(":player", strtolower($player));
+		$result = $stmt->execute();
 		$array = $result->fetchArray(SQLITE3_ASSOC);
 		return empty($array) == false;
 	}
@@ -88,6 +90,7 @@ class SQLiteProvider implements ProviderInterface{
 	 * @param float    $pitch
 	 */
 	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch): void{
+		$home = Utils::removeQuotes($home);
 		if($this->homeExists($player, $home)){
 			$this->deleteHome($player, $home);
 		}
@@ -110,8 +113,11 @@ class SQLiteProvider implements ProviderInterface{
 	 * @return Location
 	 */
 	public function getHome(string $player, string $home): Location{
-		$playerName = strtolower($player);
-		$result = $this->homesDB->query("SELECT * FROM master WHERE player = '$playerName' AND home = '$home'");
+		$home = Utils::removeQuotes($home);
+		$stmt = $this->homesDB->prepare("SELECT * FROM master WHERE player = :player AND home = :home");
+		$stmt->bindValue(":player", strtolower($player));
+		$stmt->bindValue(":home", $home);
+		$result = $stmt->execute();
 		$resultArray = $result->fetchArray(SQLITE3_ASSOC);
 		$location = null;
 		if($this->plugin->getServer()->isLevelGenerated($resultArray["world"])){
@@ -128,9 +134,10 @@ class SQLiteProvider implements ProviderInterface{
 	 * @return array|null
 	 */
 	public function getHomes(string $player): ?array{
-		$playerName = strtolower($player);
 		$homes = [];
-		$result = $this->homesDB->query("SELECT home FROM master WHERE player = '$playerName'");
+		$stmt = $this->homesDB->prepare("SELECT home FROM master WHERE player = :player");
+		$stmt->bindValue(":player", strtolower($player));
+		$result = $stmt->execute();
 		$i = 0;
 		while($resultArr = $result->fetchArray(SQLITE3_ASSOC)){
 			$homes[] = $resultArr['home'];
@@ -146,8 +153,11 @@ class SQLiteProvider implements ProviderInterface{
 	 * @return bool
 	 */
 	public function homeExists(string $player, string $home): bool{
-		$playerName = strtolower($player);
-		$result = $this->homesDB->query("SELECT home FROM master WHERE player = '$playerName' AND home = '$home';");
+		$home = Utils::removeQuotes($home);
+		$stmt = $this->homesDB->prepare("SELECT home FROM master WHERE player = :player AND home = :home");
+		$stmt->bindValue(":player", strtolower($player));
+		$stmt->bindValue(":home", $home);
+		$result = $stmt->execute();
 		$array = $result->fetchArray(SQLITE3_ASSOC);
 		return empty($array) == false;
 	}
@@ -157,8 +167,9 @@ class SQLiteProvider implements ProviderInterface{
 	 * @return int
 	 */
 	public function getMaxHomes(string $player): int{
-		$playerName = strtolower($player);
-		$result = $this->homesDB->query("SELECT count FROM homecountlimit WHERE player = '$playerName'");
+		$stmt = $this->homesDB->prepare("SELECT count FROM homecountlimit WHERE player = :player");
+		$stmt->bindValue(":player", strtolower($player));
+		$result = $stmt->execute();
 		$resultArray = $result->fetchArray(SQLITE3_ASSOC);
 		return (int) $resultArray["count"];
 	}
@@ -179,8 +190,10 @@ class SQLiteProvider implements ProviderInterface{
 	 * @param string $home
 	 */
 	public function deleteHome(string $player, string $home): void{
-		$playerName = strtolower($player);
-		$stmt = $this->homesDB->prepare("DELETE FROM master WHERE player = '$playerName' AND home = '$home'");
+		$home = Utils::removeQuotes($home);
+		$stmt = $this->homesDB->prepare("DELETE FROM master WHERE player = :player AND home = :home");
+		$stmt->bindValue(":player", strtolower($player));
+		$stmt->bindValue(":home", $home);
 		$stmt->execute();
 	}
 	

@@ -91,6 +91,7 @@ class TeleportSubCommand extends SubCommand{
 			return false;
 		}
 		$player = Utils::checkPlayer($args[0]);
+		$args[1] = Utils::removeQuotes($args[1]);
 		if(is_null($player)){
 			$sender->sendMessage($this->prefix . str_replace("{player}", $args[0], Lang::get("command.player_not_found")));
 			return false;

@@ -82,12 +82,14 @@ class YamlProvider implements ProviderInterface{
 	}
 	
 	public function setHome(string $player, string $home, Location $location, float $yaw, float $pitch): void{
+		$home = Utils::removeQuotes($home);
 		$config = new Config($this->plugin->getDataFolder() . "data/" . strtolower($player) . ".yml", Config::YAML);
 		$config->setNested("homes." . $home, Utils::__toArray($location, $yaw, $pitch));
 		$config->save();
 	}
 	
 	public function getHome(string $player, string $home): Location{
+		$home = Utils::removeQuotes($home);
 		$config = new Config($this->plugin->getDataFolder() . "data/" . strtolower($player) . ".yml", Config::YAML);
 		$homeArray = $config->getNested("homes." . $home);
 		
@@ -107,6 +109,7 @@ class YamlProvider implements ProviderInterface{
 	}
 	
 	public function homeExists(string $player, string $home): bool{
+		$home = Utils::removeQuotes($home);
 		$config = new Config($this->plugin->getDataFolder() . "data/" . strtolower($player) . ".yml", Config::YAML);
 		return ($config->getNested("homes." . $home) !== null) ? true : false;
 	}
@@ -123,6 +126,7 @@ class YamlProvider implements ProviderInterface{
 	}
 	
 	public function deleteHome(string $player, string $home): void{
+		$home = Utils::removeQuotes($home);
 		$config = new Config($this->plugin->getDataFolder() . "data/" . strtolower($player) . ".yml", Config::YAML);
 		$config->removeNested("homes." . $home);
 		$config->save();

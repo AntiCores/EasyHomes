@@ -34,6 +34,7 @@ namespace JackMD\EasyHomes\forms;
 
 use JackMD\EasyHomes\language\Lang;
 use JackMD\EasyHomes\Main;
+use JackMD\EasyHomes\utils\Utils;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\ModalForm;
 use jojoe77777\FormAPI\SimpleForm;
@@ -83,7 +84,7 @@ class HomeForm{
 				self::errorHomeEmpty($plugin, $player);
 				return;
 			}
-			$homeName = $result[0];
+			$homeName = Utils::removeQuotes($result[0]);
 			$plugin->getAPI()->registerPlayer($player->getName());
 			if($plugin->getProvider()->getHomes($player->getName()) !== null){
 				if(count($plugin->getProvider()->getHomes($player->getName())) >= $plugin->getProvider()->getMaxHomes($player->getName())){
