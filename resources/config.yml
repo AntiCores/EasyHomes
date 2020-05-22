@@ -30,13 +30,6 @@
 # ONLY FOR INTERNAL USE.
 config-version: 1
 
-# Set the data provider which you would like to use.
-# Currently Available:
-# - yaml
-# - sqlite
-# Default: yaml
-data-provider: "yaml"
-
 # The default home limit that a player gets.
 # You can give more homes to specific players using /home limit {string:player} {int:count}.
 default-home-limit: 10

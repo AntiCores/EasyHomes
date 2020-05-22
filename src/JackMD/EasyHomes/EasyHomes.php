@@ -41,107 +41,47 @@ use JackMD\EasyHomes\provider\providers\YamlProvider;
 use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use function intval;
+use function rename;
+use function time;
 
 class EasyHomes extends PluginBase{
-	
+
 	/** @var int */
 	private const CONFIG_VERSION = 1;
 
 	/** @var string */
 	public $prefix = "§a[§eEasy§6Homes§a]§r ";
 
-	/** @var ProviderInterface */
-	private $provider;
-	/** @var EasyHomesAPI */
-	private $api;
-
 	public function onEnable(): void{
-		$this->api = new EasyHomesAPI($this);
-
-		$this->checkFormAPI();
-		$this->saveDefaultConfig();
+		$this->checkVirions();
 		$this->checkConfig();
-		$this->initLang();
-		$this->setProvider();
-		$this->getProvider()->prepare();
-		$this->registerCommands();
+
+
 	}
-	
-	private function checkFormAPI(): void{
+
+	private function checkVirions(): void{
 		if(!class_exists(SimpleForm::class)){
 			throw new \RuntimeException("EasyHomes plugin will only work if you use the plugin phar from Poggit.");
 		}
 	}
-	
+
 	private function checkConfig(): void{
 		$config = $this->getConfig();
+		$dataFolder = $this->getDataFolder();
 
-		if((!$config->exists("config-version")) || ($config->get("config-version") !== self::CONFIG_VERSION)){
-			rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config_old.yml");
+		if((!$config->exists("config-version")) || (intval($config->get("config-version")) !== self::CONFIG_VERSION)){
+			$old = "config_old.yml";
+
+			if(!rename($dataFolder . "config.yml", $dataFolder . $old)){
+				$old = "config_old_" . time() . "yml";
+
+				rename($dataFolder . "config.yml", $dataFolder . $old);
+			}
+
 			$this->saveResource("config.yml");
 			$this->getLogger()->error("Your configuration file is outdated.");
-			$this->getLogger()->error("Your old configuration has been saved as config_old.yml and a new configuration file has been generated.");
+			$this->getLogger()->error("Your old configuration has been saved as $old and a new configuration file has been generated.");
 		}
-	}
-	
-	private function initLang(): void{
-		Lang::init($this);
-	}
-
-	/**
-	 * @return EasyHomesAPI
-	 */
-	public function getAPI(): EasyHomesAPI{
-		return $this->api;
-	}
-	
-	private function setProvider(): void{
-		$providerName = $this->getConfig()->get("data-provider");
-		$provider = null;
-		switch(strtolower($providerName)){
-			case "sqlite":
-				$provider = new SQLiteProvider($this);
-				$this->getLogger()->debug("SQLiteProvider successfully enabled.");
-				break;
-			case "yaml":
-				$provider = new YamlProvider($this);
-				$this->getLogger()->debug("YamlProvider successfully enabled.");
-				break;
-			default:
-				$this->getLogger()->error("Please set a valid data-provider in config.yml. Disabling plugin...");
-				$this->getServer()->getPluginManager()->disablePlugin($this);
-				break;
-		}
-		if($provider instanceof ProviderInterface){
-			$this->provider = $provider;
-		}
-	}
-	
-	/**
-	 * @return ProviderInterface
-	 */
-	public function getProvider(): ProviderInterface{
-		return $this->provider;
-	}
-	
-	private function registerCommands(): void{
-		$this->getServer()->getCommandMap()->register("easyhomes", new HomeCommand(Lang::get("command.main.default.name"), $this));
-		$this->getServer()->getCommandMap()->register("easyhomes", new HomeAdminCommand(Lang::get("command.main.admin.name"), $this));
-	}
-	
-	public function onDisable(): void{
-		if($this->isValidProvider()){
-			$this->getProvider()->close();
-		}
-	}
-	
-	/**
-	 * @return bool
-	 */
-	private function isValidProvider(): bool{
-		if(!isset($this->provider) || ($this->provider === null) || !($this->provider instanceof ProviderInterface)){
-			return false;
-		}
-		return true;
 	}
 }
