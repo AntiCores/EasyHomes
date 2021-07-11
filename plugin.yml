@@ -1,6 +1,6 @@
 name: EasyHomes
 main: JackMD\EasyHomes\EasyHomes
-api: [3.0.0]
+api: [4.0.0]
 version: 3.0.0
 author: JackMD
 
@@ -8,47 +8,45 @@ permissions:
   eh.command:
     default: true
     description: Allows using all normal home commands and forms. (Not Admin Commands or forms)
-    children:
-      eh.command.tp:
-        default: true
-        description: Allows a player to tp to home
-      eh.command.del:
-        default: true
-        description: Allows a player to delete a home
-      eh.command.help:
-        default: true
-        description: Allows a player to use home help command
-      eh.command.list:
-        default: true
-        description: Allows a player to use home list command
-      eh.command.set:
-        default: true
-        description: Allows a player to set a home
+  eh.command.tp:
+    default: true
+    description: Allows a player to tp to home
+  eh.command.del:
+    default: true
+    description: Allows a player to delete a home
+  eh.command.help:
+    default: true
+    description: Allows a player to use home help command
+  eh.command.list:
+    default: true
+    description: Allows a player to use home list command
+  eh.command.set:
+    default: true
+    description: Allows a player to set a home
   eh.command.admin:
     default: op
     description: Allows using all admin home commands and forms
-    children:
-      eh.command.admin.del:
-        default: op
-        description: Allows user to delete player's home
-      eh.command.admin.limit.get:
-        default: op
-        description: Allows user to get the home limit of a player
-      eh.command.admin.limit.set:
-        default: op
-        description: Allows user to set the home limit of a player
-      eh.command.admin.limit.increase:
-        default: op
-        description: Allows user to increase the home limit of a player
-      eh.command.admin.help:
-        default: op
-        description: Allows user to use admin help command
-      eh.command.admin.list:
-        default: op
-        description: Allows user to use admin home list command
-      eh.command.admin.set:
-        default: op
-        description: Allows user to set a player's home
-      eh.command.admin.tp:
-        default: op
-        description: Allows user to teleport to a players home
+  eh.command.admin.del:
+    default: op
+    description: Allows user to delete player's home
+  eh.command.admin.limit.get:
+    default: op
+    description: Allows user to get the home limit of a player
+  eh.command.admin.limit.set:
+    default: op
+    description: Allows user to set the home limit of a player
+  eh.command.admin.limit.increase:
+    default: op
+    description: Allows user to increase the home limit of a player
+  eh.command.admin.help:
+    default: op
+    description: Allows user to use admin help command
+  eh.command.admin.list:
+    default: op
+    description: Allows user to use admin home list command
+  eh.command.admin.set:
+    default: op
+    description: Allows user to set a player's home
+  eh.command.admin.tp:
+    default: op
+    description: Allows user to teleport to a players home
